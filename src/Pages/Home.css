@@ -1,0 +1,63 @@
+.homeButton{
+    background-color: #DEEFFF;
+    border-radius: 30px;
+}
+
+.HomePic{
+    position: absolute;
+    width: 367px;
+    height: 553px;
+}
+
+.HomePicBack{
+    position: absolute;
+    background-color: #EAEEF1;
+    width: 535px;
+    height: 539px;
+    border-radius: 300px;
+}
+
+.homeRight{
+    margin-top: 70px;
+    height: auto;
+}
+
+.homeLeft{
+    margin-top: 70px;
+    height: auto;
+}
+
+.WhyRNClinic{
+    margin-top: 200px;
+    background-color: #E9F8FF;
+    height: 100vh;
+}
+
+.WhyRNClinicPic{
+    width: 324px;
+    height: 398px;
+}
+
+.WhyRNCliniBack{
+    background-color: #111739;
+    width: 309px;
+    height: 401px;
+}
+
+.WhyRNCliniBack{
+    position: relative;
+}
+
+.WhyRNClinicPic{
+    position: absolute;
+    margin-left: 70px;
+    margin-top: 50px;
+}
+
+.BestInUs{
+    height: 110vh;
+}
+
+.card{
+    width: 230px;
+}

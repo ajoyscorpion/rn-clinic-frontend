@@ -1,0 +1,15 @@
+.bookings{
+    height: 100vh;
+}
+
+.DocCard{
+    border: solid;
+    border-radius: 30px;
+    /* width: 250px;
+    height: 300px; */
+}
+
+.Doc1{
+    width: 200px;
+    height: 150px; 
+}
