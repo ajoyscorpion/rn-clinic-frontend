@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Calender from '../Components/Calender';
-import { realMeetBook, viewdoctor } from '../Services/allAPIs';
+import { handlemeet, viewdoctor } from '../Services/allAPIs';
 import { DateContext, TimeContext } from '../Context/ContextShare';
 import Time from '../Components/Time'
 
@@ -10,7 +10,6 @@ function View() {
     const [doctorView,setDoctorView] = useState({})
     const {date,setDate} = useContext(DateContext)
     const {time,setTime} = useContext(TimeContext)
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isRealMeet, setIsRealMeet] = useState(true);
 
     const {id} = useParams()
@@ -34,14 +33,13 @@ function View() {
 
     // Inside the closeModal function
     const closeModal = () => {
-        setIsModalOpen(false);
         setDate(null);
         setTime(null);
     };
 
 
     const handleMeetClick = async () => {
-        const formattedDate = date.format('DD-MM-YYYY');
+        const formattedDate = date.format('YYYY-MM-DD');
         const formattedTime = time.format('HH:mm');
     
         const data = {
@@ -55,7 +53,7 @@ function View() {
         };
     
         try {
-            const response = await realMeetBook(data);
+            const response = await handlemeet(data);
             console.log(response);
             closeModal();
         } catch (error) {
@@ -126,8 +124,7 @@ function View() {
             <div className='col-lg-2'></div>
         </div>
 
-
-        <div class="modal fade" id="dateTime" style={{ display: isModalOpen ? 'block' : 'none' }}>
+        <div class="modal fade" id="dateTime">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -154,13 +151,13 @@ function View() {
                             type="button" 
                             class="btn btn-primary"
                             onClick={handleMeetClick}
+                            data-bs-dismiss="modal"
                         >Submit</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
+    
     </div>
   )
 }

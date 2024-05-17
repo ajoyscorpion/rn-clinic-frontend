@@ -37,8 +37,8 @@ export const viewdoctor = async (id) => {
 
 // Real Meet 
 
-export const realMeetBook = async (body) => {
-    const response = await commonRequest("POST",`${BASE_URL}/realmeetbook`,body)
+export const handlemeet = async (body) => {
+    const response = await commonRequest("POST",`${BASE_URL}/handlemeet/`,body)
     console.log(response);
     return response
 }

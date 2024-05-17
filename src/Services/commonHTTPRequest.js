@@ -1,12 +1,13 @@
 import axios from 'axios'
 
-export const commonRequest = async(method,url,body,header) => {
+export const commonRequest = async(method,url,body,header = {}) => {
     let config = {
         method,
         url,
         data:body,
         headers : {
-            'Content-Type' : 'application/json'
+            'Content-Type' : 'application/json',
+            ...header
         }
     }
 
@@ -18,6 +19,7 @@ export const commonRequest = async(method,url,body,header) => {
     // }
 
     try {
+        console.log("fuck");
         const response = await axios(config)
         console.log("Response Data:", response.data);
         return response.data;
