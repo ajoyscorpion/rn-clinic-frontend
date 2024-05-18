@@ -1,0 +1,12 @@
+.Doc1{
+    /* width: 100px;
+    height: 100px;  */
+    width: 100px;
+    height: 100px; /* Ensure the image scales properly */
+    object-fit: cover; 
+}
+
+.booking-details p {
+    margin-top: 0;
+    margin-bottom: 0.4rem; /* Adjust this value to your preference */
+}

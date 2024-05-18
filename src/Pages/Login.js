@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Login.css'
 import signin from "../Images/signin.jpg"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { signIn } from '../Services/allAPIs'
-// import { AuthContext } from '../Context/ContextShare'
+import { AuthContext } from '../Context/ContextShare'
 
 function Login() {
 
     const [email,setEmail] = useState('')
     const [pswd,setPswd] = useState('')
+    const {login} = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const handleSignIn = async(e) => {
         
@@ -26,9 +28,11 @@ function Login() {
             console.log(response.user.name);
             const name = response.user.name
             const customer_id = response.user.customer_id
-            localStorage.setItem('user',name)
-            localStorage.setItem('customerId',customer_id)
-            window.location.href='/' 
+            login(name,customer_id)
+            navigate('/')
+            // localStorage.setItem('user',name)
+            // localStorage.setItem('customerId',customer_id)
+            // window.location.href='/' 
         } catch (error) {
             console.error("Enter valid credentials");
         }

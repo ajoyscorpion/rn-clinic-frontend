@@ -8,7 +8,7 @@ const PrivateRoute = () => {
 
     console.log({isAuthenticated});
 
-    if (!isAuthenticated()) {
+    if (!isAuthenticated) {
         return <Navigate to="/Login" />;
     }
 

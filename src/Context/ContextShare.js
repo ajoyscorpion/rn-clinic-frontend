@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const DateContext = createContext()
 export const TimeContext = createContext()
@@ -9,16 +9,35 @@ function ContextShare({children}) {
 
     const [date,setDate] = useState(null)
     const [time,setTime] = useState(null)
+    const [isAuthenticated,setIsAuthenticated] = useState(false)
     
-    const isAuthenticated = () => {
-        const user = localStorage.getItem('user');
-        return user
-    };
+    // const isAuthenticated = () => {
+    //     const user = localStorage.getItem('user');
+    //     return user
+    // };
 
+    useEffect(()=>{
+      const customerId = localStorage.getItem('customerId');
+      if (customerId) {
+          setIsAuthenticated(true);
+      }
+    },[])
+
+    const login = (name,customerId) => {
+      localStorage.setItem('user',name)
+      localStorage.setItem('customerId',customerId)
+      setIsAuthenticated(true)
+    }
+
+    const logout = () => {
+      localStorage.removeItem('user')
+      localStorage.removeItem('customerId')
+      setIsAuthenticated(false)
+    }
 
 
   return (
-    <AuthContext.Provider value={{isAuthenticated}}>
+    <AuthContext.Provider value={{isAuthenticated,login,logout}}>
       <DateContext.Provider value={{date,setDate}}>
           <TimeContext.Provider value={{time,setTime}}>
               {children}

@@ -42,3 +42,19 @@ export const handlemeet = async (body) => {
     console.log(response);
     return response
 }
+
+// My Bookings
+
+export const mybookings = async (body) => {
+    const response = await commonRequest("POST",`${BASE_URL}/mybookings/`,body)
+    console.log(response);
+    return response
+}
+
+// Cancel Booking
+
+export const cancelBooking = async (body) => {
+    const response = await commonRequest("PUT",`${BASE_URL}/cancelBooking/`,body)
+    console.log(response);
+    return response
+}

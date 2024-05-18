@@ -1,8 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../Context/ContextShare';
 import logo from  "../Images/logo.png"
 
+
 function Navbar() {
+
+    const navigate = useNavigate();
+    
+    const {isAuthenticated,logout} = useContext(AuthContext)
+
+    const logOut = async() => {
+        logout()
+        // localStorage.removeItem('customerId')
+        // localStorage.removeItem('user')
+        navigate('/')
+        window.location.reload()
+    }
+
+
   return (
     <>
         <nav class="container navbar navbar-expand-lg">
@@ -31,26 +47,27 @@ function Navbar() {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Login">
-                            <strong>Sign In</strong>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <div class="btn-group">
-                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                Paulson Mathew
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-lg-end">
-                                <li>
-                                    <Link to={'/Mybookings'}>
-                                        <button class="dropdown-item" type="button">My Bookings</button>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <button class="dropdown-item" type="button">Log Out</button>
-                                </li>
-                            </ul>
-                        </div>
+                        { isAuthenticated ? (
+                            <div class="btn-group">
+                                <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                    Paulson Mathew
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-lg-end">
+                                    <li>
+                                        <Link to={'/Mybookings'}>
+                                            <button class="dropdown-item" type="button">My Bookings</button>   
+                                        </Link>    
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button" onClick={logOut}>Log Out</button>
+                                    </li>
+                                </ul>
+                            </div> )
+                            :(
+                            <a class="nav-link" href="/Login">
+                                <strong>Sign In</strong>
+                            </a> )
+                        }
                     </li>
                 </ul>
             </div>
