@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { cancelBooking, mybookings } from '../Services/allAPIs'
+import React, { useContext, useEffect, useState } from 'react'
+import { DateContext, TimeContext } from '../Context/ContextShare'
+import { cancelBooking, mybookings, updateDateTime } from '../Services/allAPIs'
 import './Mybookings.css'
+import Calender from '../Components/Calender';
+import Time from '../Components/Time'
 
 const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -15,6 +18,9 @@ function Mybookings() {
     const [booking_data,setBooking_data] = useState([])
     const [showUpcoming, setShowUpcoming] = useState(false);
     const [showExpired, setShowExpired] = useState(false);
+    const {date} = useContext(DateContext)
+    const {time} = useContext(TimeContext)
+    const [selectedBookingId, setSelectedBookingId] = useState(null);
     const user_id = localStorage.getItem('customerId')
 
     useEffect(()=>{
@@ -55,6 +61,29 @@ function Mybookings() {
             myBookings()
         } catch (error) {
             console.error(error);
+        }
+    }
+
+
+    const handleUpdateClick = async (bookingId) => {
+
+        const formattedDate = date.format('YYYY-MM-DD');
+        const formattedTime = time.format('HH:mm');
+
+        const data = {
+            booking_id:bookingId,
+            updatedDate:formattedDate,
+            updatedTime:formattedTime
+        }
+
+        console.log(data);
+
+        try {
+            const response = await updateDateTime (data)
+            console.log(response);
+            myBookings()
+        } catch (error) {
+           console.error(error); 
         }
     }
 
@@ -123,7 +152,14 @@ function Mybookings() {
                                 { booking.booking_status === "Booked" && (
                                     <>
                                         <button className='btn btn-primary disabled'>{booking.booking_status}</button>
-                                        <button className='btn btn-warning mt-1'>Update</button>
+                                        <button 
+                                            className='btn btn-warning mt-1'
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#dateTime"
+                                            onClick={() => setSelectedBookingId(booking.booking_id)} 
+                                        >
+                                            Update
+                                        </button>
                                         <button className='btn btn-danger mt-1' onClick={() => handleCancelBooking(booking.booking_id)}>Cancel</button>  
                                     </>
                                 )}
@@ -141,6 +177,42 @@ function Mybookings() {
             </div>
             <div className='col-lg-1'></div>
         </div>
+
+        <div class="modal fade" id="dateTime">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Select Date and Time</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <div className='d-flex align-items-center justify-content-center'>
+                            <Calender/>
+                            <Time/>
+                        </div>
+                        <div className='ms-5'>
+                            <p>
+                                <strong>Date : {date ? date.format('DD-MM-YYYY')  : 'Select a date'}</strong>
+                            </p>
+                            <p>
+                                <strong>Time : {time ? time.format('HH:mm') : 'Select a time'}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary"
+                            onClick={() => handleUpdateClick(selectedBookingId)}
+                            data-bs-dismiss="modal"
+                        >Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
   )
 }

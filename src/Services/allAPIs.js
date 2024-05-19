@@ -58,3 +58,19 @@ export const cancelBooking = async (body) => {
     console.log(response);
     return response
 }
+
+// Update Date and Time
+
+export const updateDateTime = async (body) => {
+    const response = await commonRequest("PUT",`${BASE_URL}/updateDateTime/`,body)
+    console.log(response);
+    return response
+}
+
+// Get All Booked Date and Time
+
+export const getAllDatesAndTimes = async () => {
+    const response = await commonRequest("GET",`${BASE_URL}/bookedDatesTimes`)
+    console.log(response);
+    return response
+}
