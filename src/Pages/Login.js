@@ -4,6 +4,12 @@ import signin from "../Images/signin.jpg"
 import { Link, useNavigate } from 'react-router-dom'
 import { signIn } from '../Services/allAPIs'
 import { AuthContext } from '../Context/ContextShare'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function Login() {
 
@@ -11,6 +17,9 @@ function Login() {
     const [pswd,setPswd] = useState('')
     const {login} = useContext(AuthContext)
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
     const handleSignIn = async(e) => {
         
@@ -29,16 +38,29 @@ function Login() {
             const name = response.user.name
             const customer_id = response.user.customer_id
             login(name,customer_id)
-            navigate('/')
+            setSnackbarMessage('Login successful!');
+            setSnackbarSeverity('success');
+            setOpen(true);
+            setTimeout(()=>{
+                navigate('/')
+            },2000)
             // localStorage.setItem('user',name)
             // localStorage.setItem('customerId',customer_id)
             // window.location.href='/' 
         } catch (error) {
             console.error("Enter valid credentials");
+            setSnackbarMessage('Invalid credentials. Please try again.');
+            setSnackbarSeverity('error');
+            setOpen(true);
         }
-
-
     }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
 
   return (
@@ -77,6 +99,11 @@ function Login() {
                 </div>
             </div>
         </div>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+            <Alert onClose={handleClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                {snackbarMessage}
+            </Alert>
+        </Snackbar>
     </div>
   )
 }

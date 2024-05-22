@@ -74,3 +74,11 @@ export const getAllDatesAndTimes = async () => {
     console.log(response);
     return response
 }
+
+// Profile Update
+
+export const profileUpdate = async(body,header) => {
+    const response = await commonRequest("POST",`${BASE_URL}/update_profile/`,body,header)
+    console.log(response);
+    return response
+}

@@ -1,13 +1,14 @@
 import axios from 'axios'
 
-export const commonRequest = async(method,url,body,header = {}) => {
+export const commonRequest = async(method,url,body,header) => {
     let config = {
         method,
         url,
         data:body,
-        headers : {
+        headers : header ? header :
+        {
             'Content-Type' : 'application/json',
-            ...header
+            //...header
         }
     }
 
@@ -28,3 +29,5 @@ export const commonRequest = async(method,url,body,header = {}) => {
         throw error;
     }
 }
+
+//header = {}

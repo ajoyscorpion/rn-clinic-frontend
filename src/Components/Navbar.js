@@ -2,13 +2,14 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Context/ContextShare';
 import logo from  "../Images/logo.png"
+import "./Navbar.css"
 
 
 function Navbar() {
 
     const navigate = useNavigate();
-    
     const {isAuthenticated,logout} = useContext(AuthContext)
+    const name = localStorage.getItem('user'); 
 
     const logOut = async() => {
         logout()
@@ -42,19 +43,19 @@ function Navbar() {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/#ContactUs">
-                            <strong>Contact Us</strong>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         { isAuthenticated ? (
                             <div class="btn-group">
-                                <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                    Paulson Mathew
+                                <button type="button" class="btn dropdown-toggle nav-link" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                    <strong>Paulson Mathew</strong>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
+                                <ul class="dropdown-menu dropdown-menu-lg-end" style={{border:"none"}}>
                                     <li>
-                                        <Link to={'/Mybookings'}>
+                                        <Link to={`/${name}`} className="linkUnderline">
+                                            <button class="dropdown-item" type="button">Profile</button>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={'/Mybookings'} className="linkUnderline">
                                             <button class="dropdown-item" type="button">My Bookings</button>   
                                         </Link>    
                                     </li>

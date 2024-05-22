@@ -4,10 +4,16 @@ import Calender from '../Components/Calender';
 import { handlemeet, viewdoctor } from '../Services/allAPIs';
 import { DateContext, TimeContext } from '../Context/ContextShare';
 import Time from '../Components/Time'
+import Rating from '@mui/material/Rating';
 
 function View() {
 
-    const [doctorView,setDoctorView] = useState({})
+    const [doctorView,setDoctorView] = useState({
+        name: '',
+        department: '',
+        img: '',
+        rating: 0,
+    })
     const {date,setDate} = useContext(DateContext)
     const {time,setTime} = useContext(TimeContext)
     const [isRealMeet, setIsRealMeet] = useState(true);
@@ -81,11 +87,7 @@ function View() {
                                     </p>
                                 </div>
                                 <div className='col-lg-3 d-flex align-items-end'>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                                    <Rating name="read-only" value={doctorView.rating} readOnly />
                                 </div>
                             </div>
                             <div className='row mt-4'>

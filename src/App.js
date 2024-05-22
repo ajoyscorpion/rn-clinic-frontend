@@ -9,8 +9,10 @@ import View from './Pages/View';
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import PrivateRoute from './Components/PrivateRoute';
+import Profile from './Pages/Profile';
 
 function App() {
+
   return (
     <div className="App">
       <Navbar />
@@ -19,6 +21,7 @@ function App() {
           <Route element={<PrivateRoute/>}>
             <Route path='/Booking' element={<Booking />} exact/>
             <Route path='/Mybookings' element={<Mybookings />} />
+            <Route path={`/:name`} element={<Profile/>} />
             <Route path='/View/:id' element={<View />} />
           </Route>
           <Route path='/Login' element={<Login />} />

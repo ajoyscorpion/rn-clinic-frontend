@@ -10,6 +10,7 @@ function ContextShare({children}) {
     const [date,setDate] = useState(null)
     const [time,setTime] = useState(null)
     const [isAuthenticated,setIsAuthenticated] = useState(false)
+    const [loading, setLoading] = useState(true);
     
     // const isAuthenticated = () => {
     //     const user = localStorage.getItem('user');
@@ -21,6 +22,7 @@ function ContextShare({children}) {
       if (customerId) {
           setIsAuthenticated(true);
       }
+      setLoading(false);
     },[])
 
     const login = (name,customerId) => {
@@ -37,7 +39,7 @@ function ContextShare({children}) {
 
 
   return (
-    <AuthContext.Provider value={{isAuthenticated,login,logout}}>
+    <AuthContext.Provider value={{isAuthenticated,login,logout,loading}}>
       <DateContext.Provider value={{date,setDate}}>
           <TimeContext.Provider value={{time,setTime}}>
               {children}

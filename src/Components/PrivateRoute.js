@@ -2,11 +2,16 @@ import React, { useContext } from 'react'
 import { Navigate, Outlet} from "react-router-dom";
 import { AuthContext } from '../Context/ContextShare'
 
+
 const PrivateRoute = () => {
 
-    const {isAuthenticated} = useContext(AuthContext)
+    const {isAuthenticated,loading} = useContext(AuthContext)
 
     console.log({isAuthenticated});
+
+    if (loading) {
+        return <div>Loading...</div>; // Render a loading state while checking authentication
+    }
 
     if (!isAuthenticated) {
         return <Navigate to="/Login" />;
