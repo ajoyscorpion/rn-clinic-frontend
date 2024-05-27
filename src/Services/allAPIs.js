@@ -82,3 +82,12 @@ export const profileUpdate = async(body,header) => {
     console.log(response);
     return response
 }
+
+
+// User Details
+
+export const getuserdetails = async (user_id) => {
+    const response = await commonRequest("GET",`${BASE_URL}/userdetails/${user_id}`,'')
+    console.log(response);
+    return response
+}

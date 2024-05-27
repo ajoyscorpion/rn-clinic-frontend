@@ -8,6 +8,7 @@ function SignUp() {
 
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
+    const [phone,setPhone] = useState('')
     const [pswd,setPswd] = useState('')
 
 
@@ -17,7 +18,8 @@ function SignUp() {
         const data = {
             name:name,
             email:email,
-            pswd:pswd
+            pswd:pswd,
+            phone:phone
         }
 
         console.log(data);
@@ -53,6 +55,10 @@ function SignUp() {
                                 <div class="mb-3 mt-3">
                                     <label for="Email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="Email" required value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="Phone" class="form-label">Phone Number</label>
+                                    <input type="number" class="form-control" id="Phone" required value={phone} onChange={(e) => setPhone(e.target.value)}/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Password" class="form-label">Password</label>
