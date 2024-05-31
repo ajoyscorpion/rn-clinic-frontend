@@ -82,7 +82,7 @@ function Mybookings() {
             console.log(bookingDetails);
             const emailData = {
                 to: 'ajoyscorpion@gmail.com',
-                subject: 'RN Clinic Appointment',
+                subject: 'RN Clinic Appointment Cancel',
                 message:`
                     <!DOCTYPE html>
                         <html lang="en">
@@ -181,7 +181,7 @@ function Mybookings() {
             console.log(bookingDetails);
             const emailData = {
                 to: 'ajoyscorpion@gmail.com',
-                subject: 'RN Clinic Appointment',
+                subject: 'RN Clinic Appointment Update',
                 message:`
                     <!DOCTYPE html>
                         <html lang="en">
