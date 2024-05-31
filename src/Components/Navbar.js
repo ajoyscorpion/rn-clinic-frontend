@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Context/ContextShare';
 import logo from  "../Images/logo.png"
 import "./Navbar.css"
+//import Divider from '@mui/material/Divider';
 
 
 function Navbar() {
@@ -22,8 +23,8 @@ function Navbar() {
 
   return (
     <>
-        <nav class="container navbar navbar-expand-lg">
-            <div class="container-fluid">
+        <nav class="container navbar navbar-expand-lg border-bottom pb-4">
+            <div class="container-fluid ">
                 <a class="navbar-brand ms-3 mt-2" href="/">
                     <img src={logo} alt="logo" width={"60px"} height={"60px"}/>
                 </a>
@@ -48,19 +49,25 @@ function Navbar() {
                                 <button type="button" class="btn dropdown-toggle nav-link" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                                     <strong>Paulson Mathew</strong>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-lg-end" style={{border:"none"}}>
-                                    <li>
+                                <ul class="dropdown-menu" style={{border:"none"}}>
+                                    <li class="nav-item">
                                         <Link to={`/${name}`} className="linkUnderline">
-                                            <button class="dropdown-item" type="button">Profile</button>
+                                            <button class="dropdown-item" type="button">
+                                                <strong>Profile</strong>    
+                                            </button>
                                         </Link>
                                     </li>
-                                    <li>
+                                    <li class="nav-item">
                                         <Link to={'/Mybookings'} className="linkUnderline">
-                                            <button class="dropdown-item" type="button">My Bookings</button>   
+                                            <button class="dropdown-item" type="button">
+                                                <strong>My Bookings</strong>
+                                            </button>   
                                         </Link>    
                                     </li>
-                                    <li>
-                                        <button class="dropdown-item" type="button" onClick={logOut}>Log Out</button>
+                                    <li class="nav-item">
+                                        <button class="dropdown-item" type="button" onClick={logOut}>
+                                            <strong>Log Out</strong>
+                                        </button>
                                     </li>
                                 </ul>
                             </div> )
@@ -74,6 +81,7 @@ function Navbar() {
             </div>
             </div>
         </nav>
+        {/* <Divider component="" className=''/> */}
     </>
   )
 }

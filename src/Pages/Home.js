@@ -9,11 +9,11 @@ function Home() {
   return (
     <>
     <div className='container'>
-        <div className='row'>
-            <div className='col-lg-6 homeLeft'>
+        <div className='row home'>
+            <div className='col-lg-6 col-12 homeLeft'>
                 <div className='row'>
-                    <div className='col-lg-3'></div>
-                    <div className='col-lg-6'>
+                    <div className='col-lg-3 col-2'></div>
+                    <div className='col-lg-6 col-8'>
                         <h2 className='mt-5'>
                             <strong>Explore alternative medicine with our expert healers</strong>
                         </h2>
@@ -26,10 +26,10 @@ function Home() {
                             </button>
                         </Link>
                     </div>
-                    <div className='col-lg-2'></div>
+                    <div className='col-lg-2 col-2'></div>
                 </div>
             </div>
-            <div className='col-lg-6 homeRight d-flex justify-content-center'>
+            <div className='col-lg-6 col-12 homeRight d-flex justify-content-center'>
                 <div className='HomePicBack'></div>
                 <img src={HomePic} alt='HomePic' className='HomePic'></img>
             </div>
@@ -37,14 +37,14 @@ function Home() {
 
         {/* Why RN Clinic? */}
         <div className='row WhyRNClinic'>
-            <div className='col-lg-6 WhyRNClinicLeft d-flex justify-content-center align-items-center'>
+            <div className='col-lg-6 col-12 WhyRNClinicLeft d-none d-lg-flex justify-content-center align-items-center'>
                 <div className='WhyRNCliniBack'></div>
                 <img src={WhyRNClinic} alt='Why RN Clinic?' className='WhyRNClinicPic'></img>
             </div>
-            <div className='col-lg-6 WhyRNClinicRight d-flex align-items-center'>
-                <div className='col-lg-2'></div>
-                <div className='col-lg-8'>
-                    <h3 className='mt-5'>
+            <div className='col-lg-6 col-12 WhyRNClinicRight d-flex align-items-center'>
+                <div className='col-lg-2 col-2'></div>
+                <div className='col-lg-8 col-8'>
+                    <h3 className=''>
                         <strong>
                             Why RN Clinic?
                         </strong>
@@ -62,12 +62,12 @@ function Home() {
                         </strong>
                     </p>
                 </div>
-                <div className='col-lg-2'></div>
+                <div className='col-lg-2 col-2'></div>
             </div>
         </div>
 
         {/* Best In Us */}
-        <div className='row BestInUs'>
+        {/* <div className='row BestInUs'>
             <div className='mt-5'>
                 <h2 className='text-center'>Best In Us</h2>
                 <div className='row mt-5'>
@@ -129,7 +129,7 @@ function Home() {
                     <div className='col-lg-2'></div>
                 </div>
             </div>
-        </div>
+        </div> */}
     </div>
     </>
   )

@@ -38,7 +38,7 @@ function Login() {
             const name = response.user.name
             const customer_id = response.user.customer_id
             login(name,customer_id)
-            setSnackbarMessage('Login successful!');
+            setSnackbarMessage('Login successful. Welcome back!');
             setSnackbarSeverity('success');
             setOpen(true);
             setTimeout(()=>{
@@ -66,13 +66,13 @@ function Login() {
   return (
     <div className='container'>
         <div className='row mt-5 mb-5'>
-            <div className='col-lg-6 d-flex align-items-center justify-content-center'>
+            <div className='col-lg-6 d-none d-lg-flex align-items-center justify-content-center'>
                 <img src={signin} className="signinpic" alt="signin"></img>
             </div>
-            <div className='col-lg-6'>
+            <div className='col-lg-6 col-12'>
                 <div className='row'>
-                    <div className='col-lg-3'></div>
-                    <div className='col-lg-6 d-flex flex-column justify-content-center'>
+                    <div className='col-lg-3 col-2'></div>
+                    <div className='col-lg-6 col-8 d-flex flex-column justify-content-center'>
                         <div className='mt-5'>
                             <h3 className='text-center'>
                                 <strong>Sign In</strong>
@@ -90,12 +90,12 @@ function Login() {
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>  
                                 <div className='d-flex justify-content-center mt-3'>
-                                    <p>Don't have an Account ?<span> <Link to={"/SignUp"}> Sign Up</Link></span></p>
+                                    <p>Don't have an account ?<span> <Link to={"/SignUp"}> Sign Up</Link></span></p>
                                 </div> 
                             </form>
                         </div>
                     </div>
-                    <div className='col-lg-3'></div>
+                    <div className='col-lg-3 col-8'></div>
                 </div>
             </div>
         </div>

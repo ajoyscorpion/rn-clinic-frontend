@@ -1,3 +1,8 @@
+
+.home{
+    height: 80vh;
+}
+
 .homeButton{
     background-color: #DEEFFF;
     border-radius: 30px;
@@ -7,19 +12,22 @@
     position: absolute;
     width: 367px;
     height: 553px;
+    /* z-index: 1; */
 }
 
 .HomePicBack{
-    position: absolute;
+    position: relative;
     background-color: #EAEEF1;
     width: 535px;
     height: 539px;
     border-radius: 300px;
+    /* z-index: 0; */
 }
 
 .homeRight{
     margin-top: 70px;
     height: auto;
+    /* position: relative; */
 }
 
 .homeLeft{
@@ -28,7 +36,7 @@
 }
 
 .WhyRNClinic{
-    margin-top: 200px;
+    margin-top:0px;
     background-color: #E9F8FF;
     height: 100vh;
 }
@@ -36,16 +44,15 @@
 .WhyRNClinicPic{
     width: 324px;
     height: 398px;
+    position: relative;
 }
 
 .WhyRNCliniBack{
     background-color: #111739;
     width: 309px;
     height: 401px;
-}
-
-.WhyRNCliniBack{
-    position: relative;
+    position: absolute;
+    z-index: 0;
 }
 
 .WhyRNClinicPic{
@@ -61,3 +68,42 @@
 .card{
     width: 230px;
 }
+
+
+
+@media (max-width: 767px) {
+    
+    .HomePicBack, .WhyRNClinicBack {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+  
+    .HomePic {
+      max-width: 200px;
+      max-height: 300px;
+    }
+  
+    .WhyRNClinicPic {
+      max-width: 200px;
+      max-height: 200px;
+      margin-left: 0;
+      margin-top: 25px;
+    }
+
+    .home{
+        height: 150vh;
+    }
+
+    .WhyRNClinic{
+        height: 160vh;
+    }
+
+    .homeLeft{
+        height: 400px;
+    }
+
+    .homeRight{
+        height: 400px;
+    }
+  }

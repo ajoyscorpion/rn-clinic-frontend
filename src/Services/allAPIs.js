@@ -1,4 +1,5 @@
 import { commonRequest } from "./commonHTTPRequest";
+//import RNClinicEmailSend from "../../emails";
 
 const BASE_URL = "http://127.0.0.1:8000"
 
@@ -88,6 +89,15 @@ export const profileUpdate = async(body,header) => {
 
 export const getuserdetails = async (user_id) => {
     const response = await commonRequest("GET",`${BASE_URL}/userdetails/${user_id}`,'')
+    console.log(response);
+    return response
+}
+
+
+// Send Email
+
+export const sendEmail = async (body) =>{
+    const response = await commonRequest("POST",`${BASE_URL}/sendEmail`,body)
     console.log(response);
     return response
 }
