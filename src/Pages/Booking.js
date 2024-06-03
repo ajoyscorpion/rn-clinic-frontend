@@ -54,24 +54,24 @@ function Booking() {
             <div className='col-lg-9 col-12'>
                 <div className='row'>
                     <div className='col-lg-1 col-1'></div>
-                    <div className='col-lg-10 col-10 d-flex'>
+                    <div className='col-lg-10 col-10'>
                         <div className='row'>
-                        {filterDoctors.map((doctor,index)=>(
-                        <div className='col-lg-5 col-12 mt-3 me-4 DocCard' key={index}>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <img src={`http://localhost:8000/media/${doctor.img}`} class="Doc1 mt-3" alt="Dr. Michael Johnson"/>
-                            </div> 
-                            <div class="d-flex flex-column align-items-center mt-3">
-                                <h6 class="card-title text-center">{doctor.name}</h6>
-                                <p class="card-text text-center rounded-pill mt-2" style={{width:"100px",backgroundColor:"#E1E1E1"}}>{doctor.department}</p>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mt-2 mb-2">
-                                <Link to={`/View/${doctor.id}`}>
-                                    <button className='btn btn-primary'>Book Now</button>
-                                </Link>
-                            </div>
-                        </div>
-                        ))}
+                            {filterDoctors.map((doctor,index)=>(
+                                <div className='col-lg-5 col-12 m-2  DocCard' key={index}>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <img src={`http://localhost:8000/media/${doctor.img}`} class="Doc1 mt-3" alt="Dr. Michael Johnson"/>
+                                    </div> 
+                                    <div class="d-flex flex-column align-items-center mt-3">
+                                        <h6 class="card-title text-center">{doctor.name}</h6>
+                                        <p class="card-text text-center rounded-pill mt-2" style={{width:"150px",backgroundColor:"#E1E1E1"}}>{doctor.department}</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center mt-2 mb-2">
+                                        <Link to={`/View/${doctor.id}`}>
+                                            <button className='btn btn-primary'>Book Now</button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div className='col-lg-1 col-1'></div>   

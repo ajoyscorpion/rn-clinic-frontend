@@ -23,7 +23,7 @@ export const signIn = async(body) => {
 // Get All Doctors
 
 export const getAllDoc = async() => {
-    const response = await commonRequest("GET",`${BASE_URL}/doctors/`)
+    const response = await commonRequest("GET",`${BASE_URL}/doctors`)
     console.log(response);
     return response
 }
@@ -31,7 +31,7 @@ export const getAllDoc = async() => {
 // View Doctor
 
 export const viewdoctor = async (id) => {
-    const response = await commonRequest("GET",`${BASE_URL}/view-doctor/${id}`,'')
+    const response = await commonRequest("GET",`${BASE_URL}/viewDoctor/${id}`,'')
     console.log(response);
     return response
 }
@@ -39,7 +39,7 @@ export const viewdoctor = async (id) => {
 // Real Meet 
 
 export const handlemeet = async (body) => {
-    const response = await commonRequest("POST",`${BASE_URL}/handlemeet/`,body)
+    const response = await commonRequest("POST",`${BASE_URL}/handlemeet`,body)
     console.log(response);
     return response
 }
@@ -47,7 +47,7 @@ export const handlemeet = async (body) => {
 // My Bookings
 
 export const mybookings = async (body) => {
-    const response = await commonRequest("POST",`${BASE_URL}/mybookings/`,body)
+    const response = await commonRequest("POST",`${BASE_URL}/mybookings`,body)
     console.log(response);
     return response
 }
@@ -55,7 +55,7 @@ export const mybookings = async (body) => {
 // Cancel Booking
 
 export const cancelBooking = async (body) => {
-    const response = await commonRequest("PUT",`${BASE_URL}/cancelBooking/`,body)
+    const response = await commonRequest("PUT",`${BASE_URL}/cancelBooking`,body)
     console.log(response);
     return response
 }
@@ -63,15 +63,15 @@ export const cancelBooking = async (body) => {
 // Update Date and Time
 
 export const updateDateTime = async (body) => {
-    const response = await commonRequest("PUT",`${BASE_URL}/updateDateTime/`,body)
+    const response = await commonRequest("PUT",`${BASE_URL}/updateDateTime`,body)
     console.log(response);
     return response
 }
 
 // Get All Booked Date and Time
 
-export const getAllDatesAndTimes = async () => {
-    const response = await commonRequest("GET",`${BASE_URL}/bookedDatesTimes`)
+export const getAllDatesAndTimes = async (doctorID) => {
+    const response = await commonRequest("GET",`${BASE_URL}/bookedDatesTimes/${doctorID}`,)
     console.log(response);
     return response
 }
@@ -79,7 +79,7 @@ export const getAllDatesAndTimes = async () => {
 // Profile Update
 
 export const profileUpdate = async(body,header) => {
-    const response = await commonRequest("POST",`${BASE_URL}/update_profile/`,body,header)
+    const response = await commonRequest("POST",`${BASE_URL}/update_profile`,body,header)
     console.log(response);
     return response
 }

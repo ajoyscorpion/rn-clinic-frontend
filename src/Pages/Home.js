@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css'
 import HomePic from '../Images/HomePic.png'
 import WhyRNClinic from '../Images/WhyRNClinic.jpg'
-import DrMichealJohnson from '../Images/Dr. Michael Johnson.png'
+//import DrMichealJohnson from '../Images/Dr. Michael Johnson.png'
 import { Link } from 'react-router-dom'
 
 function Home() {

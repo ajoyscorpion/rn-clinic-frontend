@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { DateContext, TimeContext } from '../Context/ContextShare'
+import { DateContext, DoctorIdContext, TimeContext } from '../Context/ContextShare'
 import { cancelBooking, mybookings, sendEmail, updateDateTime } from '../Services/allAPIs'
 import './Mybookings.css'
-import Calender from '../Components/Calender';
+import Calender, { get_booked_dates_times } from '../Components/Calender';
 import Time from '../Components/Time'
 import Divider from '@mui/material/Divider';
 import logo from "../Images/logo.png"
@@ -23,6 +23,7 @@ const formatDate = (dateString) => {
 
 function Mybookings() {
 
+    const {doctorId,setDoctorId} = useContext(DoctorIdContext)
     const [booking_data,setBooking_data] = useState([])
     const [showUpcoming, setShowUpcoming] = useState(false);
     const [showExpired, setShowExpired] = useState(false);
@@ -158,6 +159,10 @@ function Mybookings() {
             setSnackbarSeverity('error');
             setOpen(true);
         }
+    }
+
+    const booked_dates_times = async () => {
+        get_booked_dates_times(doctorId)
     }
 
 
@@ -337,7 +342,11 @@ function Mybookings() {
                                                 className='btn btn-warning mt-1'
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#dateTime"
-                                                onClick={() => setSelectedBookingId(booking.booking_id)} 
+                                            onClick={() => {
+                                                setSelectedBookingId(booking.booking_id);
+                                                setDoctorId(booking.doctor_id);
+                                                booked_dates_times()
+                                            }}
                                             >
                                                 Update
                                             </button>
@@ -378,6 +387,10 @@ function Mybookings() {
                                 <p>
                                     <strong>Time : {time ? time.format('HH:mm') : 'Select a time'}</strong>
                                 </p>
+                            </div>
+                            <div className="opacity-50 mt-4 ms-5" style={{fontSize:"13px",lineHeight:"3px"}}>
+                                <p className='fst-italic'>* Clinic open from 9:00 AM till 6:00 PM</p>
+                                <p className='fst-italic'>* Lunch break - 1:00 PM to 2:00 PM </p>
                             </div>
                         </div>
                         <div class="modal-footer">

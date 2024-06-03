@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Calender from '../Components/Calender';
+import Calender, { get_booked_dates_times } from '../Components/Calender';
 import { getuserdetails, handlemeet, sendEmail, viewdoctor } from '../Services/allAPIs';
-import { DateContext, TimeContext } from '../Context/ContextShare';
+import { DateContext, DoctorIdContext, TimeContext } from '../Context/ContextShare';
 import Time from '../Components/Time'
 import Rating from '@mui/material/Rating';
 import logo from "../Images/logo.png"
@@ -22,6 +22,7 @@ function View() {
         img: '',
         rating: 0,
     })
+    const {doctorId,setDoctorId} = useContext(DoctorIdContext)
     const {date,setDate} = useContext(DateContext)
     const {time,setTime} = useContext(TimeContext)
     const [isRealMeet, setIsRealMeet] = useState(true);
@@ -37,6 +38,12 @@ function View() {
         // eslint-disable-next-line
     }, []);
 
+    useEffect(() => {
+        if (doctorId) {
+            get_booked_dates_times(doctorId); // Call the function here
+        }
+    }, [doctorId]);
+
     const getUserDetails = async () => {
         console.log("thu");
         const response = await getuserdetails(user_id)
@@ -47,13 +54,17 @@ function View() {
 
     console.log(userDetails);
 
+   
     const {id} = useParams()
     console.log(id);
+    setDoctorId(id)
+    console.log(doctorId);
 
     const user_id = localStorage.getItem('customerId')
     console.log(user_id);
 
     const viewDoctor = async() => {
+        console.log(id);
         const doctor = await viewdoctor(id)
         console.log(doctor);
         setDoctorView(doctor)
@@ -63,7 +74,7 @@ function View() {
     useEffect(()=>{ 
         viewDoctor()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[id])
+    },[doctorId])
 
 
     // Inside the closeModal function
@@ -85,7 +96,7 @@ function View() {
         const formattedTime = time.format('HH:mm');
     
         const data = {
-            doctor_id: id,
+            doctor_id: doctorId,
             date_of_appointment: formattedDate,
             time_of_appointment: formattedTime,
             online: isRealMeet ? false : true,
@@ -275,7 +286,7 @@ function View() {
                         </div>
                         <div class="modal-body ">
                             <div className='d-flex align-items-center justify-content-center'>
-                                <Calender/>
+                                <Calender />
                                 <Time/>
                             </div>
                             <div className='ms-5'>
@@ -285,6 +296,10 @@ function View() {
                                 <p>
                                     <strong>Time : {time ? time.format('HH:mm') : 'Select a time'}</strong>
                                 </p>
+                            </div>
+                            <div className="opacity-50 mt-4 ms-5" style={{fontSize:"13px",lineHeight:"3px"}}>
+                                <p className='fst-italic'>* Clinic open from 9:00 AM till 6:00 PM</p>
+                                <p className='fst-italic'>* Lunch break - 1:00 PM to 2:00 PM </p>
                             </div>
                         </div>
                         <div class="modal-footer">

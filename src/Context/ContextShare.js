@@ -3,12 +3,14 @@ import { createContext, useEffect, useState } from "react";
 export const DateContext = createContext()
 export const TimeContext = createContext()
 export const AuthContext = createContext()
+export const DoctorIdContext = createContext()
 
 
 function ContextShare({children}) {
 
     const [date,setDate] = useState(null)
     const [time,setTime] = useState(null)
+    const [doctorId,setDoctorId] = useState(null)
     const [isAuthenticated,setIsAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true);
     
@@ -42,7 +44,9 @@ function ContextShare({children}) {
     <AuthContext.Provider value={{isAuthenticated,login,logout,loading}}>
       <DateContext.Provider value={{date,setDate}}>
           <TimeContext.Provider value={{time,setTime}}>
+            <DoctorIdContext.Provider value={{doctorId,setDoctorId}}>
               {children}
+            </DoctorIdContext.Provider>   
           </TimeContext.Provider>
       </DateContext.Provider>
     </AuthContext.Provider>
